@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Hornet";
+  src: url("hornet.ttf");
+}
+
+@font-face {
+  font-family: "Roman";
+  src: url("roman.ttf");
+}
+
+body {
+  background-color: black;
+  font-family: "Hornet";
+  color: #81fcae;
+}
+
+p {
+  margin: 0;
+}
+
+.title {
+  text-decoration: underline;
+  font-size: 50px;
+}
+
+.button-placement {
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  border: 1px solid rgb(136, 238, 136);
+  position: relative;
+  font-size: 24px;
+}
+
+.button:hover {
+  background-color: rgb(80, 152, 80);
+  cursor: pointer;
+}
+
+.equation {
+  font-family: "Roman";
+  font-size: 36px;
+}
