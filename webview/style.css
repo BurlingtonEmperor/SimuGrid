@@ -23,6 +23,11 @@ p {
   font-size: 50px;
 }
 
+.underline {
+  text-decoration: underline;
+  font-size: 24px;
+}
+
 .button-placement {
   display: flex;
   gap: 15px;
@@ -42,4 +47,21 @@ p {
 .equation {
   font-family: "Roman";
   font-size: 36px;
+  border: 1px solid rgb(136, 238, 136);
+}
+
+.representation {
+  color: #9cecec;
+}
+
+.representation:hover {
+  color:rgb(238, 136, 161);
+}
+
+.large {
+  font-size: 24px;
+}
+
+.component {
+  border: 1px solid rgb(136, 238, 136);
 }
