@@ -11,57 +11,65 @@
     <i>Version v1.0.0</i>
     <br>
     <div class="button-placement">
-      <div class="button">
+      <div class="button" id="run-sim">
         <p>Run Simulation</p>
+      </div>
+      <div class="button" id="stop-sim">
+        <p>Stop Simulation</p>
+      </div>
+      <div class="button">
+        <p>View Equations</p>
       </div>
       <div class="button">
         <p>Change Constants</p>
       </div>
-      <div class="button">
-        <p>View Graphs</p>
-      </div>
-      <div class="button">
-        <p>View True Equation Characters</p>
+      <div class="button" id="reset-btn">
+        <p>Reset</p>
       </div>
     </div>
     <br>
+    <p>Click on each equation to view its graph.</p>
+    <p>Timer: <a id="current-time">0.00</a></p>
     <hr>
-    <p class="underline">Equations</p>
-    <br>
-    <p class="large"><i>Microgrid Plant Model</i></p>
-    <div class="equation">
-      <p>DC Bus Voltage: <span class="representation">V̇<sub>bus</sub> = (1 / C<sub>bus</sub>) · (I<sub>out,1</sub> + I<sub>out,2</sub> - u<sub>0</sub>I<sub>load</sub> - V<sub>bus</sub> / R<sub>b,1</sub>)</span></p>
-      <p>Converter Output Current: <span class="representation">I<sub>out,i</sub> = (1 / R<sub>b,2</sub>) · (V<sub>out,i</sub> - V<sub>bus</sub>)</span></p>
-      <p>Boost Converter Voltage Input: <span class="representation">V̇<sub>in,1</sub> = (1 / C) · (I<sub>in,1</sub> - V<sub>in,1</sub> / R<sub>c,1</sub> - (1 / R<sub>c,2,1</sub>) · (V<sub>in,1</sub> - u<sub>1</sub>V<sub>out,1</sub>))</span></p>
-      <p>Boost Converter Voltage Output: <span class="representation">V̇<sub>out,1</sub> = (1 / C) · ((u<sub>1</sub> / R<sub>c,2,1</sub>) · (V<sub>in,1</sub> - u<sub>1</sub>V<sub>out,1</sub>) - V<sub>out,1</sub> / R<sub>c,1</sub> - I<sub>out,1</sub>)</span></p>
-      <p>Buck Converter Input Voltage: <span class="representation">V̇<sub>in,2</sub> = (1 / C) · (I<sub>in,2</sub> - V<sub>in,2</sub> / R<sub>c,1</sub> - (u<sub>2</sub> / R<sub>c,2,2</sub>) · (u<sub>2</sub>V<sub>in,2</sub> - V<sub>out,2</sub>))</span></p>
-      <p>Buck Converter Output Voltage: <span class="representation">V̇<sub>out,2</sub> = (1 / C) · ((1 / R<sub>c,2,2</sub>) · (u<sub>2</sub>V<sub>in,2</sub> - V<sub>out,2</sub>) - V<sub>out,2</sub> / R<sub>c,1</sub> - I<sub>out,2</sub>)</span></p>
-      <p>Photovoltaic Thermal Dynamics: <span class="representation">Ṫ<sub>PV</sub> = (1 / C<sub>m</sub>) · (α<sub>PV</sub>A<sub>s</sub>G - hA<sub>s</sub>(T<sub>PV</sub> - T<sub>∞</sub>) - I<sub>PV</sub>V<sub>PV</sub>)</span></p>
-      <p>Battery State of Charge: <span class="representation">SȮC = -I<sub>Li</sub> / Q<sub>Li</sub></span></p>
-      <p>Battery Polarization Voltage: <span class="representation">V̇<sub>p,Li</sub> = (1 / C<sub>p,Li</sub>) · (I<sub>Li</sub> - V<sub>p,Li</sub> / R<sub>p,Li</sub>)</span></p>
-      <p>Battery Terminal Voltage: <span class="representation">V<sub>Li</sub> = OCV<sub>Li</sub>(SOC) - V<sub>2,Li</sub> - V<sub>3,Li</sub> - V<sub>4,Li</sub> - I<sub>Li</sub>R<sub>1,Li</sub></span></p> 
-      <p>DAE Representation: <span class="representation"><b>C</b><b>ẋ</b> = -<b>M̄</b><b>P</b>(<b>x</b>, <b>u</b>, <b>x</b><sup>S</sup>)</span></p>
-    </div>
-    <br/>
-    <p class="large"><i>Objective Functions (Environmental Impacts)</i></p>
-    <div class="equation">
-      <p>Component Environmental Impact: <span class="representation">J<sub>m</sub> = c<sub>m</sub>&theta;</span></p>
-      <p>Environmental (Operational Waste) Impact: <span class="representation">J<sub>o</sub> = c<sub>o</sub>&int;<sup>t<sub>f</sub></sup><sub>0</sub> P<sub>out</sub>(&tau;) d&tau;</span></p>
-      <p>Battery Disposal Impact: <span class="representation">J<sub>d</sub> = Q<sub>loss</sub>(SOC, I<sub>Li</sub>)</span></p>
-      <p>Total Environmental Impact: <span class="representation">J<sub>tot</sub> = w<sub>m</sub>J<sup>n</sup><sub>m</sub> + w<sub>o</sub>J<sup>n</sup><sub>o</sub> + w<sub>d</sub>J<sup>n</sup><sub>d</sub></span></p>
-    </div>
-    <br>
-    <p class="large"><i>Constraints</i></p>
-    <div class="equation">
-      <p>Scaled Microgrid Representation: <span class="representation"><b>Ψ</b><sub>c</sub>(<b>θ</b>)<b>C</b><b>ẋ</b> = -<b>M̄</b><b>Ψ</b>(<b>θ</b>)<b>P</b>(<b>x</b>, <b>u</b>, <b>x</b><sup>S</sup>)</span></p>
-      <p>Discrete Controller Representation: <span class="representation"><b>u</b><sub>k+1</sub> = f(<b>ϕ</b>, <b>u</b><sub>k</sub>, <b>u</b><sub>k-1</sub>, <b>x</b><sub>k</sub>, <b>x</b><sub>k-1</sub>, <b>P</b><sub>k</sub>, <b>P</b><sub>k-1</sub>, <b>x</b><sub>ref,k</sub>, <b>P</b><sub>ref,k</sub>)</span></p>
-      <p>Maximum Load Tracking Error: <span class="representation">∫<sub>0</sub><sup>t<sub>f</sub></sup> (P<sub>load,ref</sub>(τ) - P<sub>load</sub>(τ))<sup>2</sup> dτ ≤ μ̄<sub>tr</sub></span></p>
-      <p>Design Variable Bounds Constraint: <span class="representation"><b>θ</b><sub>min</sub> ≤ <b>θ</b> ≤ <b>θ</b><sub>max</sub>, <b>ϕ</b><sub>min</sub> ≤ <b>ϕ</b> ≤ <b>ϕ</b><sub>max</sub></span></p>
+    <div id="equations-tab">
+      <p class="underline">Equations</p>
+      <br>
+      <p class="large"><i>Microgrid Plant Model</i></p>
+      <div class="equation">
+        <p>DC Bus Voltage: <span class="representation">V̇<sub>bus</sub> = (1 / C<sub>bus</sub>) · (I<sub>out,1</sub> + I<sub>out,2</sub> - u<sub>0</sub>I<sub>load</sub> - V<sub>bus</sub> / R<sub>b,1</sub>)</span> <a id="sim-bus"></a></p>
+        <p>Converter Output Current: <span class="representation">I<sub>out,i</sub> = (1 / R<sub>b,2</sub>) · (V<sub>out,i</sub> - V<sub>bus</sub>)</span></p>
+        <p>Boost Converter Voltage Input: <span class="representation">V̇<sub>in,1</sub> = (1 / C) · (I<sub>in,1</sub> - V<sub>in,1</sub> / R<sub>c,1</sub> - (1 / R<sub>c,2,1</sub>) · (V<sub>in,1</sub> - u<sub>1</sub>V<sub>out,1</sub>))</span> <a id="vin1"></a></p>
+        <p>Boost Converter Voltage Output: <span class="representation">V̇<sub>out,1</sub> = (1 / C) · ((u<sub>1</sub> / R<sub>c,2,1</sub>) · (V<sub>in,1</sub> - u<sub>1</sub>V<sub>out,1</sub>) - V<sub>out,1</sub> / R<sub>c,1</sub> - I<sub>out,1</sub>)</span> <a id="vin2"></a></p>
+        <p>Buck Converter Input Voltage: <span class="representation">V̇<sub>in,2</sub> = (1 / C) · (I<sub>in,2</sub> - V<sub>in,2</sub> / R<sub>c,1</sub> - (u<sub>2</sub> / R<sub>c,2,2</sub>) · (u<sub>2</sub>V<sub>in,2</sub> - V<sub>out,2</sub>))</span> <a id="vin3"></a></p>
+        <p>Buck Converter Output Voltage: <span class="representation">V̇<sub>out,2</sub> = (1 / C) · ((1 / R<sub>c,2,2</sub>) · (u<sub>2</sub>V<sub>in,2</sub> - V<sub>out,2</sub>) - V<sub>out,2</sub> / R<sub>c,1</sub> - I<sub>out,2</sub>)</span> <a id="vin4"></a></p>
+        <p>Photovoltaic Thermal Dynamics: <span class="representation">Ṫ<sub>PV</sub> = (1 / C<sub>m</sub>) · (α<sub>PV</sub>A<sub>s</sub>G - hA<sub>s</sub>(T<sub>PV</sub> - T<sub>∞</sub>) - I<sub>PV</sub>V<sub>PV</sub>)</span> <a id="solark"></a></p>
+        <p>Battery State of Charge: <span class="representation">SȮC = -I<sub>Li</sub> / Q<sub>Li</sub></span> <a id="bsoc"></a></p>
+        <p>Battery Polarization Voltage: <span class="representation">V̇<sub>p,Li</sub> = (1 / C<sub>p,Li</sub>) · (I<sub>Li</sub> - V<sub>p,Li</sub> / R<sub>p,Li</sub>)</span> <a id="vp2"></a></p>
+        <p>Battery Terminal Voltage: <span class="representation">V<sub>Li</sub> = OCV<sub>Li</sub>(SOC) - V<sub>2,Li</sub> - V<sub>3,Li</sub> - V<sub>4,Li</sub> - I<sub>Li</sub>R<sub>1,Li</sub></span> <a id="vp3"></a></p> 
+        <p>DAE Representation: <span class="representation"><b>C</b><b>ẋ</b> = -<b>M̄</b><b>P</b>(<b>x</b>, <b>u</b>, <b>x</b><sup>S</sup>)</span> <a id="vp4"></a></p>
+      </div>
+      <br/>
+      <p class="large"><i>Objective Functions (Environmental Impacts)</i></p>
+      <div class="equation">
+        <p>Component Environmental Impact: <span class="representation">J<sub>m</sub> = c<sub>m</sub>&theta;</span></p>
+        <p>Environmental (Operational Waste) Impact: <span class="representation">J<sub>o</sub> = c<sub>o</sub>&int;<sup>t<sub>f</sub></sup><sub>0</sub> P<sub>out</sub>(&tau;) d&tau;</span></p>
+        <p>Battery Disposal Impact: <span class="representation">J<sub>d</sub> = Q<sub>loss</sub>(SOC, I<sub>Li</sub>)</span></p>
+        <p>Total Environmental Impact: <span class="representation">J<sub>tot</sub> = w<sub>m</sub>J<sup>n</sup><sub>m</sub> + w<sub>o</sub>J<sup>n</sup><sub>o</sub> + w<sub>d</sub>J<sup>n</sup><sub>d</sub></span></p>
+      </div>
+      <br>
+      <p class="large"><i>Constraints</i></p>
+      <div class="equation">
+        <p>Scaled Microgrid Representation: <span class="representation"><b>Ψ</b><sub>c</sub>(<b>θ</b>)<b>C</b><b>ẋ</b> = -<b>M̄</b><b>Ψ</b>(<b>θ</b>)<b>P</b>(<b>x</b>, <b>u</b>, <b>x</b><sup>S</sup>)</span></p>
+        <p>Discrete Controller Representation: <span class="representation"><b>u</b><sub>k+1</sub> = f(<b>ϕ</b>, <b>u</b><sub>k</sub>, <b>u</b><sub>k-1</sub>, <b>x</b><sub>k</sub>, <b>x</b><sub>k-1</sub>, <b>P</b><sub>k</sub>, <b>P</b><sub>k-1</sub>, <b>x</b><sub>ref,k</sub>, <b>P</b><sub>ref,k</sub>)</span></p>
+        <p>Maximum Load Tracking Error: <span class="representation">∫<sub>0</sub><sup>t<sub>f</sub></sup> (P<sub>load,ref</sub>(τ) - P<sub>load</sub>(τ))<sup>2</sup> dτ ≤ μ̄<sub>tr</sub></span></p>
+        <p>Design Variable Bounds Constraint: <span class="representation"><b>θ</b><sub>min</sub> ≤ <b>θ</b> ≤ <b>θ</b><sub>max</sub>, <b>ϕ</b><sub>min</sub> ≤ <b>ϕ</b> ≤ <b>ϕ</b><sub>max</sub></span></p>
+      </div>
     </div>
     
     <script src="mathjax_config.js"></script>
     <script src="mathjax.js"></script>
 
     <script src="simugrid.js"></script>
+    <script src="interface.js"></script>
   </body>
 </html>
