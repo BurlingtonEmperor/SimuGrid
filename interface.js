@@ -91,6 +91,18 @@ resetBtn.onclick = function () {
   state = [400.0, 300.0, 400.0, 350.0, 400.0, 298.15, 0.8, 0.0, 0.0, 0.0];
 
   simBus.innerText = "";
+  
   vin1.innerText = "";
   vin2.innerText = "";
+
+  vin3.innerText = "";
+  vin4.innerText = "";
+
+  solark.innerText = "";
+
+  bsoc.innerText = "";
+
+  vp2.innerText = "";
+  vp3.innerText = "";
+  vp4.innerText = "";
 }
