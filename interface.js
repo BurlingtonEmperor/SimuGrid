@@ -119,6 +119,7 @@ resetBtn.onclick = function () {
   currentTime.innerText = "0.00";
 
   state = [400.0, 300.0, 400.0, 350.0, 400.0, 298.15, 0.8, 0.0, 0.0, 0.0];
+  timeArray = [];
 
   simBus.innerText = "";
   
