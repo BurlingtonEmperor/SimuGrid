@@ -17,9 +17,16 @@ const vp3 = document.getElementById("vp3");
 const vp4 = document.getElementById("vp4");
 
 const currentTime = document.getElementById("current-time");
+let toggleView = 0;
 
 let isRunning = false;
 let animationFrameId = null;
+
+let timeArray = [];
+let stateArray = [];
+
+let arraySelection = 0;
+let graphUnit = "V";
 
 function updateUI (t, s) {
   currentTime.innerText = t.toFixed(3);
@@ -39,6 +46,29 @@ function updateUI (t, s) {
   vp2.innerText = String(state[7].toFixed(2)) + "V";
   vp3.innerText = String(state[8].toFixed(2)) + "V";
   vp4.innerText = String(state[9].toFixed(2)) + "V";
+
+  timeArray.push(t);
+
+  if (timeArray.length >= 20 && toggleView == 0) {
+    timeArray = timeArray.slice(-5);
+  }
+
+  stateArray.push(parseFloat(state[arraySelection].toFixed(2)));
+  switch (arraySelection) {
+    case 5:
+      graphUnit = "K";
+      break;
+    case 6:
+      graphUnit = "SOC";
+      break;
+    default:
+      graphUnit = "V";
+      break;
+  }
+
+  if (stateArray.length >= 20 && toggleView == 0) {
+    stateArray = stateArray.slice(-5);
+  }
 }
 
 const stepsPerFrame = 50; 

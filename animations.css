@@ -1,0 +1,12 @@
+@keyframes slowBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.slow-blink {
+  animation: slowBlink 3s infinite ease-in-out;
+}
